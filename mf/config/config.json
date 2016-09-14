@@ -1,0 +1,47 @@
+{
+    "aws_key": "EXAMPLE_KEY",
+    "aws_secret": "EXAMPLE_SECRET",
+    "bucket": "flx-videobooth",
+    "bucket-path": "videos/",
+    "region": "us-west-2",
+    "watch-extension": "json",
+    "s3-acl": "private",
+    "metadata": {
+        "email":"userEmail",
+        "message":"userMessage",
+        "nickname":"userNickName"
+    },
+    "log-config": {
+        "version": 1,
+        "root": {
+            "level": "DEBUG",
+            "handlers": [
+                "console",
+                "file"
+            ]
+        },
+        "formatters": {
+            "simple": {
+                "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"
+            }
+        },
+        "handlers": {
+            "console": {
+                "formatter": "simple",
+                "class": "logging.StreamHandler",
+                "stream": "ext://sys.stdout",
+                "level": "DEBUG"
+            },
+            "file": {
+                "backupCount": 7,
+                "level": "DEBUG",
+                "interval": 1,
+                "when": "d",
+                "filename": "logs/app.log",
+                "encoding": "utf8",
+                "formatter": "simple",
+                "class": "logging.handlers.TimedRotatingFileHandler"
+            }
+        }
+    }
+}
