@@ -6,6 +6,7 @@
     "region": "us-west-2",
     "watch-extension": "json",
     "s3-acl": "private",
+    "monitoring-delay": 5,
     "metadata": {
         "email":"userEmail",
         "message":"userMessage",
@@ -17,7 +18,8 @@
             "level": "DEBUG",
             "handlers": [
                 "console",
-                "file"
+                "file_all",
+                "file_error"
             ]
         },
         "formatters": {
@@ -32,12 +34,22 @@
                 "stream": "ext://sys.stdout",
                 "level": "DEBUG"
             },
-            "file": {
+            "file_all": {
                 "backupCount": 7,
                 "level": "DEBUG",
                 "interval": 1,
                 "when": "d",
-                "filename": "logs/app.log",
+                "filename": "logs/app_all.log",
+                "encoding": "utf8",
+                "formatter": "simple",
+                "class": "logging.handlers.TimedRotatingFileHandler"
+            },
+            "file_error": {
+                "backupCount": 7,
+                "level": "ERROR",
+                "interval": 1,
+                "when": "d",
+                "filename": "logs/app_error.log",
                 "encoding": "utf8",
                 "formatter": "simple",
                 "class": "logging.handlers.TimedRotatingFileHandler"
