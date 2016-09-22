@@ -20,6 +20,7 @@ import json
 import logging
 import logging.config
 import threading
+import StringIO
 import boto3
 import botocore
 
@@ -301,6 +302,7 @@ def main():
 
     # check AWS credentials:
     try:
+        log.debug("Checking AWS credentials")
         s3 = boto3.resource(
             's3',
             region_name=config["region"],
@@ -308,7 +310,19 @@ def main():
             aws_secret_access_key=config["aws_secret"],
         )
         bucket = s3.Bucket(config["bucket"])
-        bucket.load()
+        data = StringIO.StringIO("Test content")
+        bucket.upload_fileobj(data, 'credentials_test_object')
+        response = bucket.delete_objects(
+            Delete={
+                'Objects': [
+                    {
+                        'Key': 'credentials_test_object',
+                    },
+                ],
+                'Quiet': True
+            },
+        )
+        log.debug("AWS credentials ok")
     except Exception as error:
         log.error("Unable connect to S3. Found error: %s", error)
         return
