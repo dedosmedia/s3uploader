@@ -1,16 +1,17 @@
 {
-    "aws_key": "EXAMPLE_KEY",
-    "aws_secret": "EXAMPLE_SECRET",
-    "bucket": "flx-videobooth",
-    "bucket-path": "videos/",
-    "region": "us-west-2",
+    "aws_key": "",
+    "aws_secret": "",
+    "bucket": "empgroup-pr",
+    "bucket-path": "webm2mp4/input/",
+    "region": "us-east-1",
     "watch-extension": "json",
     "s3-acl": "private",
     "monitoring-delay": 5,
     "metadata": {
+        "name":"userName",
         "email":"userEmail",
-        "message":"userMessage",
-        "nickname":"userNickName"
+        "age":"userAge",
+        "city":"userCity"
     },
     "log-config": {
         "version": 1,
