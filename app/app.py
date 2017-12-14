@@ -23,6 +23,7 @@ import threading
 import StringIO
 import boto3
 import botocore
+import random
 
 CONFIG_FOLDER = "config"
 CONFIG_FILENAME = "config.json"
@@ -250,7 +251,7 @@ def mononitor_folder(monitored_folder, config):
             log.error("Unable to get JSON file list. Will retry in %s seconds. Found error: %s", monitoring_delay, error)
             time.sleep(monitoring_delay)
             continue
-
+        random.shuffle(file_list)
         log.debug("Got file list %s", file_list)
         process_json_files(file_list, monitored_folder, config)
         time.sleep(monitoring_delay)
