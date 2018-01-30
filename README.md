@@ -61,5 +61,10 @@ Run the image:
 $ docker run -i -e "MONITORED_FOLDER=/opt/mf" -v <PATH TO  MONITORED FOLDER ON YOUR HOST>:/opt/mf s3uploader
 ```
 
+Run the image with always restart:
+```
+$ docker run -i -d --restart unless-stopped -e "MONITORED_FOLDER=/opt/mf" -v "C:/Path/to/upload":/opt/mf s3uploader
+```
+
 Enjoy :-)
 
